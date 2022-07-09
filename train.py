@@ -65,10 +65,10 @@ def train_fn(disc_A, disc_B, gen_B, gen_A, loader, opt_disc, opt_gen, L1, mse, d
             cycle_A_loss = L1(A, cycler_A)
 
             # identity loss
-            identity_B = gen_B(B)
-            identity_A = gen_B(A)
-            identity_B_loss = L1(B, identity_B)
-            identity_A_loss = L1(A, identity_A)
+            # identity_B = gen_B(B)
+            # identity_A = gen_B(A)
+            # identity_B_loss = L1(B, identity_B)
+            # identity_A_loss = L1(A, identity_A)
 
             # add all together
             G_loss = (
@@ -76,8 +76,9 @@ def train_fn(disc_A, disc_B, gen_B, gen_A, loader, opt_disc, opt_gen, L1, mse, d
                 loss_G_A +
                 cycle_B_loss * config.LAMBDA_CYCLE +
                 cycle_A_loss * config.LAMBDA_CYCLE +
-                identity_B_loss * config.LAMBDA_IDENTITY +
-                identity_A_loss * config.LAMBDA_IDENTITY
+                # identity_B_loss * config.LAMBDA_IDENTITY +
+                # identity_A_loss * config.LAMBDA_IDENTITY +
+                0
             )
 
         opt_gen.zero_grad()
